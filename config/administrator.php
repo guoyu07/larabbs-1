@@ -42,6 +42,14 @@ return array(
             'roles',
             'permissions',
         ],
+        '内容管理' => [
+            'categories',
+            'topics',
+            'replies',
+        ],
+        '站点管理' => [
+            'settings.site',
+        ],
     ],
 
     /*
@@ -52,6 +60,8 @@ return array(
      */
     'permission' => function () {
         // 只要是能管理内容的用户，就允许访问后台
+        // 注：不可以只用 Auth::user()->can('manage_contents') 判断
+        // 因为在未登录用户试图进入后台时，Auth::user() 为 null
         return Auth::check() && Auth::user()->can('manage_contents');
     },
 
