@@ -35,7 +35,7 @@ return [
                 return empty($avatar) ? 'N/A' : '<img src="'.$avatar.'" width="40">';
             },
 
-            // 是否允许排序
+            // 是否允许排序，默认为 true
             'sortable' => false,
         ],
 
@@ -49,10 +49,11 @@ return [
 
         'email' => [
             'title' => '邮箱',
+            'sortable' => false,
         ],
 
         'operation' => [
-            'title'  => '管理',
+            'title'  => '操作',
             'sortable' => false,
         ],
     ],
@@ -78,6 +79,8 @@ return [
             'type' => 'image',
 
             // 图片上传必须设置图片存放路径
+            // 注：只是上传到了正确的位置，但 users 表中 avatar 字段信息存放的
+            // 只是文件名，并非完成的路径名，所以需要用【修改器】重写 avatar 字段
             'location' => public_path() . '/uploads/images/avatars/',
         ],
         'roles' => [
